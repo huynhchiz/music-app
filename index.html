@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="shortcut icon" href="#">
+    <script src="https://kit.fontawesome.com/7a3791636a.js" crossorigin="anonymous"></script>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-bold-straight/css/uicons-bold-straight.css'>
+</head>
+
+<body>
+    <div class="show-playing">
+        <h4>Now playing</h4>
+        <h3></h3>
+        <div id="album-img">
+            <div class="cd">
+
+            </div>
+        </div>
+
+        <div class="show-action">
+            <div class="action-btn replay-btn">
+                <i class="fas fa-redo-alt"></i>
+            </div>
+
+            <div class="action-btn backward-btn">
+                <i class="fas fa-backward"></i>
+            </div>
+
+            <div class="play-pause">
+                <div class="action-btn play-btn active-btn">
+                    <i id="play-icon" class="fas fa-play"></i>
+                </div>
+                <div class="action-btn pause-btn">
+                    <i id="pause-icon" class="fas fa-pause"></i>
+                </div>
+            </div>
+
+            <div class="action-btn forward-btn">
+                <i class="fas fa-forward"></i>
+            </div>
+
+            <div class="random-repeat">
+                <div class="action-btn random-btn active-btn">
+                    <abbr title="Đang phát ngẫu nhiên">
+                        <i id="random-icon" class="fas fa-random"></i>
+                    </abbr>
+                </div>
+                <div class="action-btn repeatOne-btn">
+                    <abbr title="Đang lặp lại bài hát hiện tại">
+                        <i class="fi fi-bs-arrows-repeat-1"></i>
+                    </abbr>
+                </div>
+                <div class="action-btn repeatList-btn">
+                    <abbr title="Đang lặp lại toàn bộ bài hát">
+                        <i id="repeatList-icon" class="fa-solid fa-repeat"></i>
+                    </abbr>
+                </div>
+            </div>
+            
+        </div>
+
+        <input id="progress" class="progress" type="range" value="0" step="1" min="0" max="100">
+
+        <audio id="audio"></audio>
+    </div>
+
+
+    <div class="show-list">
+        <!-- <div class="song">
+            <img id="list-img" src="../css/img/nauanchoem.jpg" alt="img">
+            <div class="song-infor hover-white-infor">
+                <h4>Nấu ăn cho em</h4>
+                <h5>Đen Vâu</h5>
+            </div>
+            <div class="song-more hover-white-infor">
+                <i class="fas fa-ellipsis-h"></i>
+            </div>
+        </div> -->
+    </div>
+
+    <script src="../js/app.js"></script>
+
+</body>
+
+</html>

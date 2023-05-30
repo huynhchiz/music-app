@@ -1,0 +1,155 @@
+* {
+    margin: 0;
+    padding: 0
+}
+
+.show-playing {
+    position: fixed;
+    top: 0;
+    width: 412px;
+    background-color: rgb(241, 234, 240);
+    text-align: center;
+    height: 455px;
+}
+
+.show-playing h4 {
+    margin-top: 16px;
+    display: inline-block;
+    color: #ec1f55;
+}
+
+.show-playing h3 {
+    margin-top: 6px;
+    margin-bottom: 12px;
+}
+
+#album-img {
+    margin: auto;
+    width: 250px;
+}
+
+.cd {
+    margin: auto;
+    width: 100%;
+    padding-top: 100%;
+    border-radius: 50%;
+    margin: auto;
+    background-size: cover;
+}
+
+.show-action {
+    margin: 16px auto 0px;
+    width: 350px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.action-btn {
+    font-size: 24px;
+    padding: 12px 15px;
+    border: none;
+    background-color: rgb(241, 234, 240);
+}
+
+.action-btn:hover {
+    color: white;
+    background-color: #ec1f55;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.active-btn {
+    display: inline-block !important;
+}
+
+.play-btn,
+.pause-btn,
+.random-btn,
+.repeatList-btn,
+.repeatOne-btn {
+    display: none;
+}
+
+#play-icon {
+    padding: 1px 3px 5px 3px;
+}
+
+#pause-icon {
+    padding: 1px 4.5px 5px;
+}
+
+#random-icon {
+    padding: 0px 0px 6px;
+}
+
+#repeatList-icon {
+    padding: 0px 0px 6px 0;
+}
+
+.progress {
+    margin-top: 16px;
+    width: 350px;
+    -webkit-appearance: none;
+    height: 6px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: 0.2s;
+    transition: opacity 0.2s;
+}
+
+.progress::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 6px;
+    background-color: #ec1f55;
+    cursor: pointer;
+}
+
+.show-list {
+    width: 412px;
+    background-size: 100%;
+    margin-top: 462px;
+    height: 350px;
+}
+
+.song {
+    margin-bottom: 6px;
+    background-color: rgb(241, 234, 240);
+    border-radius: 12px;
+    margin-left: 5%;
+    width: 90%;
+    height: 65px;
+    display: flex;
+    align-items: center;
+}
+
+.song:hover {
+    background-color: #ec1f55;
+}
+
+#list-img {
+    display: inline-block;
+    margin: 12px;
+    width: 50px;
+    border-radius: 50%;
+}
+
+.song-infor {
+    margin-left: 12px;
+    flex: 1;
+}
+
+.song-infor h4 {
+    margin-bottom: 3px;
+}
+
+.song-more {
+    padding: 16px;
+    cursor: pointer;
+}
+
+.song:hover .hover-white-infor {
+    color: white;
+}
