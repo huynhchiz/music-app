@@ -24,61 +24,61 @@ const app = {
             name: 'Nấu Ăn Cho Em',
             singer: 'Đen Vâu',
             src: './css/audio/NauAnChoEm-Den-9466587.mp3',
-            img: '../css/img/nauanchoem.jpg'
+            img: './css/img/nauanchoem.jpg'
         },
         {
             name: 'Anh Đã Sai Vì Anh Tin',
             singer: 'Mr Siro',
-            src: '../css/audio/AnhDaSaiViAnhTin-MrSiro-4694386.mp3',
-            img: '../css/img/mrsiro.jpg'
+            src: './css/audio/AnhDaSaiViAnhTin-MrSiro-4694386.mp3',
+            img: './css/img/mrsiro.jpg'
         },
         {
             name: 'Day Dứt Nỗi Đau',
             singer: 'Mr Siro',
-            src: '../css/audio/DayDutNoiDau-MrSiro-3569331.mp3',
-            img: '../css/img/mrsiro.jpg'
+            src: './css/audio/DayDutNoiDau-MrSiro-3569331.mp3',
+            img: './css/img/mrsiro.jpg'
         },
         {
             name: 'Đưa Em Về Nhà',
             singer: 'Gree',
-            src: '../css/audio/DuaEmVeNhaa-GREYDChillies-9214678.mp3',
-            img: '../css/img/duaemvenha.jpg'
+            src: './css/audio/DuaEmVeNhaa-GREYDChillies-9214678.mp3',
+            img: './css/img/duaemvenha.jpg'
         },
         {
             name: 'Gương Mặt Lạ Lẫm',
             singer: 'Mr Siro',
-            src: '../css/audio/GuongMatLaLam-MrSiro-4583437.mp3',
-            img: '../css/img/mrsiro.jpg'
+            src: './css/audio/GuongMatLaLam-MrSiro-4583437.mp3',
+            img: './css/img/mrsiro.jpg'
         },
         {
             name: 'Lặng Lẽ Tổn Thương',
             singer: 'Mr Siro',
-            src: '../css/audio/LangLeTonThuong-MrSiro-3569337.mp3',
-            img: '../css/img/mrsiro.jpg'
+            src: './css/audio/LangLeTonThuong-MrSiro-3569337.mp3',
+            img: './css/img/mrsiro.jpg'
         },
         {
             name: 'Một Ngày Chẳng Nắng',
             singer: 'Pháo',
-            src: '../css/audio/MotNgayChangNang-Phao-9400644.mp3',
-            img: '../css/img/motngaychangnang.jpg'
+            src: './css/audio/MotNgayChangNang-Phao-9400644.mp3',
+            img: './css/img/motngaychangnang.jpg'
         },
         {
             name: 'Tự Tình 2',
             singer: 'Trung Quân',
-            src: '../css/audio/TuTinh2LiveAtSoulOfTheForest-TrungQuanIdol-7847943.mp3',
-            img: '../css/img/tutinh2.jpg'
+            src: './css/audio/TuTinh2LiveAtSoulOfTheForest-TrungQuanIdol-7847943.mp3',
+            img: './css/img/tutinh2.jpg'
         },
         {
             name: 'Tìm Được Nhau Khó thế Nào',
             singer: 'Mr Siro',
-            src: '../css/audio/TimDuocNhauKhoTheNao-MrSiro-3505526.mp3',
-            img: '../css/img/mrsiro.jpg'
+            src: './css/audio/TimDuocNhauKhoTheNao-MrSiro-3505526.mp3',
+            img: './css/img/mrsiro.jpg'
         },
         {
             name: 'Là Anh',
             singer: 'Phạm Lịch',
-            src: '../css/audio/LaAnh-PhamLichBMZ-8811329.mp3',
-            img: '../css/img/laanh.jpg'
+            src: './css/audio/LaAnh-PhamLichBMZ-8811329.mp3',
+            img: './css/img/laanh.jpg'
         }
     ],
     
