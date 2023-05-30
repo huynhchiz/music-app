@@ -14,6 +14,7 @@ const heading = $('.show-playing h3')
 const cdImg = $('.cd')
 const cd = $('#album-img')
 const showPlaying = $('.show-playing')
+const progress = $('#progress')
 
 const app = {
     currentIndex: 1,
@@ -85,7 +86,7 @@ const app = {
         let htmls = ''
         for (let i = 0; i < this.playList.length; i++) {
             htmls +=  `
-                <div class="song">
+                <div class="song ${i === this.currentIndex ? 'song-active' : ''}">
                     <img id="list-img" src="${this.playList[i].img}" alt="img">
                     <div class="song-infor hover-white-infor">
                         <h4>${this.playList[i].name}</h4>
@@ -129,6 +130,33 @@ const app = {
         cdImg.style.backgroundImage = `url(${this.getCurrentSong().img})`
     },
 
+    scrollIntoCurrentSong() {
+        $('.song-active').scrollIntoView({
+            behavior: 'smooth',
+            block: 'center'
+        })
+    },
+
+    handleShowCurrentSong() {
+        
+    },
+
+    //CD rotate
+    cdRotate: cdImg.animate([
+        { transform: 'rotate(360deg)'}
+    ],{
+        duration: 10000,
+        iterations: Infinity
+    }),
+    
+    pauseCdRotate() {
+        this.cdRotate.pause()
+    },
+
+    playCdRotate() {
+        this.cdRotate.play()
+    },
+
     handleReplay() {
         replayBtn.onclick = function() {
             audio.currentTime = 0;
@@ -164,6 +192,8 @@ const app = {
                 }
                 app.loadCurrentSong()
                 playBtn.click()
+                app.renderPlayList()
+                app.scrollIntoCurrentSong()
             }
         }
     },
@@ -173,11 +203,13 @@ const app = {
             this.classList.remove('active-btn')
             pauseBtn.classList.add('active-btn')
             audio.play()
+            app.playCdRotate()
         }
         pauseBtn.onclick = function () {
             this.classList.remove('active-btn')
             playBtn.classList.add('active-btn')
             audio.pause()
+            app.pauseCdRotate()
         }
     },
 
@@ -207,9 +239,35 @@ const app = {
         app.currentIndex = newIndex
         app.loadCurrentSong()
         playBtn.click()
+        app.renderPlayList()
+        app.scrollIntoCurrentSong()
+    },
+
+    handleProgressTimeUpdate() {
+        audio.ontimeupdate = function() {
+            let timePercent = audio.currentTime / audio.duration * 100
+            progress.value = timePercent
+        }
+        progress.onchange = function () {
+            audio.currentTime = audio.duration / 100 * progress.value
+        }
+    },
+
+    handleNextSong() {
+        audio.onended = function() {
+            if (app.repeatStatus === 'repeatOne') {
+                replayBtn.click()
+            } else {
+                forwardBtn.click()
+            }
+        }
     },
 
     handleEvents() {
+        this.pauseCdRotate()
+
+        this.handleShowCurrentSong()
+
         this.handleScrollList()
 
         this.handleReplay()
@@ -221,6 +279,10 @@ const app = {
         this.handlePlayPause()
 
         this.handleRepeatBtn()
+
+        this.handleProgressTimeUpdate()
+
+        this.handleNextSong()
     },
     
     start() {
