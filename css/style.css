@@ -123,6 +123,10 @@
     align-items: center;
 }
 
+.song-infor {
+    padding: 14px 0px;
+}
+
 .song-active {
     background-color: #ec1f55;
     color: white;

@@ -1,5 +1,5 @@
 const $ = document.querySelector.bind(document)
-const $$ = document.querySelector.bind(document)
+const $$ = document.querySelectorAll.bind(document)
 
 const replayBtn = $('.replay-btn')
 const backwardBtn = $('.backward-btn')
@@ -121,7 +121,7 @@ const app = {
     },
 
     getCurrentSong() {
-        return this.playList[this.currentIndex]
+        return this.playList[this.currentIndex];
     },
 
     loadCurrentSong() {
@@ -137,8 +137,28 @@ const app = {
         })
     },
 
+    loadActiveSong() {        
+        $('.song.song-active').classList.remove('song-active')
+        let songs = $$('.song')
+        for (let i = 0; i < songs.length; i++) {
+            if(i === app.currentIndex) {
+                songs[i].classList.add('song-active')
+            }
+        }
+    },
+
     handleShowCurrentSong() {
-        
+        let songs = $$('.song')
+        for (let i = 0; i < songs.length; i++) {
+            songs[i].onclick = function() {
+                if (songs[i] !== $('.song.song-active')) {
+                    app.currentIndex = i
+                    app.loadCurrentSong()
+                    app.loadActiveSong()
+                    playBtn.click()
+                }
+            }
+        }
     },
 
     //CD rotate
@@ -175,9 +195,8 @@ const app = {
                     app.currentIndex = app.playList.length - 1
                 }
                 app.loadCurrentSong()
+                app.loadActiveSong()
                 playBtn.click()
-                app.renderPlayList()
-                // app.scrollIntoCurrentSong() 
             }
         }
     },
@@ -193,9 +212,8 @@ const app = {
                     app.currentIndex++
                 }
                 app.loadCurrentSong()
+                app.loadActiveSong()
                 playBtn.click()
-                app.renderPlayList()
-                // app.scrollIntoCurrentSong()
             }
         }
     },
@@ -240,9 +258,8 @@ const app = {
         } while (newIndex === app.currentIndex)
         app.currentIndex = newIndex
         app.loadCurrentSong()
+        app.loadActiveSong()
         playBtn.click()
-        app.renderPlayList()
-        // app.scrollIntoCurrentSong()
     },
 
     handleProgressTimeUpdate() {
@@ -285,6 +302,8 @@ const app = {
         this.handleProgressTimeUpdate()
 
         this.handleNextSong()
+
+        // this.loadActiveSong()
     },
     
     start() {
