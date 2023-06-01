@@ -52,12 +52,6 @@
     cursor: pointer;
 }
 
-/* .action-btn:hover {
-    color: white;
-    background-color: #ec1f55;
-    border-radius: 50%;
-} */
-
 .active-btn {
     display: inline-block !important;
 }
