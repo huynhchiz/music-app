@@ -176,6 +176,8 @@ const app = {
                 }
                 app.loadCurrentSong()
                 playBtn.click()
+                app.renderPlayList()
+                // app.scrollIntoCurrentSong() 
             }
         }
     },
@@ -193,7 +195,7 @@ const app = {
                 app.loadCurrentSong()
                 playBtn.click()
                 app.renderPlayList()
-                app.scrollIntoCurrentSong()
+                // app.scrollIntoCurrentSong()
             }
         }
     },
@@ -240,7 +242,7 @@ const app = {
         app.loadCurrentSong()
         playBtn.click()
         app.renderPlayList()
-        app.scrollIntoCurrentSong()
+        // app.scrollIntoCurrentSong()
     },
 
     handleProgressTimeUpdate() {
