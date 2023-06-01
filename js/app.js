@@ -245,11 +245,11 @@ const app = {
 
     handleProgressTimeUpdate() {
         audio.ontimeupdate = function() {
-            let timePercent = audio.currentTime / audio.duration * 100
+            let timePercent = audio.currentTime / audio.duration * 1000
             progress.value = timePercent
         }
-        progress.onchange = function () {
-            audio.currentTime = audio.duration / 100 * progress.value
+        progress.oninput = function () {
+            audio.currentTime = audio.duration / 1000 * progress.value
         }
     },
 
