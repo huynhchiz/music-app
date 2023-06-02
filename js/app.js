@@ -1,6 +1,8 @@
 const $ = document.querySelector.bind(document)
 const $$ = document.querySelectorAll.bind(document)
 
+const MUSIC_KEY = 'Music-App'
+
 const replayBtn = $('.replay-btn')
 const backwardBtn = $('.backward-btn')
 const forwardBtn = $('.forward-btn')
@@ -17,8 +19,10 @@ const showPlaying = $('.show-playing')
 const progress = $('#progress')
 
 const app = {
-    currentIndex: 1,
+    currentIndex: 0,
+    config: JSON.parse(localStorage.getItem(MUSIC_KEY,)) || {},
     repeatStatus: 'random',
+    currentTime:0,
     playList: [
         {
             name: 'Nấu Ăn Cho Em',
@@ -81,6 +85,28 @@ const app = {
             img: './css/img/laanh.jpg'
         }
     ],
+    setConfig(key, value) {
+        this.config[key] = value;
+        localStorage.setItem(MUSIC_KEY, JSON.stringify(this.config))
+    },
+
+    loadConfigRepeat() {
+        this.repeatStatus = this.config['repeatStt'] || 'random'
+        if (this.repeatStatus === 'random') {
+            repeatListBtn.click()
+        } else if (this.repeatStatus === 'repeatList') {
+            repeat1Btn.click()
+        } else if (this.repeatStatus === 'repeatOne') {
+            randomBtn.click()
+        }
+    },
+
+    loadConfigCurrentSong() {
+        this.currentIndex = this.config['currntIdx'] || 0
+        audio.currentTime = this.config['timeUpdate'] || 0
+        this.loadCurrentSong()
+        this.loadActiveSong()
+    },
     
     renderPlayList()  {
         let htmls = ''
@@ -90,7 +116,7 @@ const app = {
                     <img id="list-img" src="${this.playList[i].img}" alt="img">
                     <div class="song-infor hover-white-infor">
                         <h4>${this.playList[i].name}</h4>
-                        <h5>${this.playList[i].singer}</h5>
+                        <p>${this.playList[i].singer}</p>
                     </div>
                     <div class="song-more hover-white-infor">
                         <i class="fas fa-ellipsis-h"></i>
@@ -136,8 +162,8 @@ const app = {
             block: 'center'
         })
     },
-
-    loadActiveSong() {        
+  
+    loadActiveSong() {
         $('.song.song-active').classList.remove('song-active')
         let songs = $$('.song')
         for (let i = 0; i < songs.length; i++) {
@@ -149,14 +175,17 @@ const app = {
 
     handleShowCurrentSong() {
         let songs = $$('.song')
+        let songMores = $$('.fas.fa-ellipsis-h')
         for (let i = 0; i < songs.length; i++) {
-            songs[i].onclick = function() {
-                if (songs[i] !== $('.song.song-active')) {
+            songs[i].onclick = function(e) {
+                if(e.target !== songMores[i] && songs[i] !== $('.song.song-active')) {
+                    e.stopPropagation()
                     app.currentIndex = i
                     app.loadCurrentSong()
                     app.loadActiveSong()
                     playBtn.click()
-                }
+                    
+                }    
             }
         }
     },
@@ -181,6 +210,23 @@ const app = {
         replayBtn.onclick = function() {
             audio.currentTime = 0;
             playBtn.click()
+        }
+    },
+      
+    handlePlayPause() {
+        playBtn.onclick = function () {
+            this.classList.remove('active-btn')
+            pauseBtn.classList.add('active-btn')
+            app.playCdRotate()
+            audio.play()
+            console.log(app.currentIndex)
+            app.setConfig('currntIdx', app.currentIndex)
+        }
+        pauseBtn.onclick = function () {
+            this.classList.remove('active-btn')
+            playBtn.classList.add('active-btn')
+            audio.pause()
+            app.pauseCdRotate()
         }
     },
 
@@ -218,36 +264,22 @@ const app = {
         }
     },
 
-    handlePlayPause() {
-        playBtn.onclick = function () {
-            this.classList.remove('active-btn')
-            pauseBtn.classList.add('active-btn')
-            audio.play()
-            app.playCdRotate()
-        }
-        pauseBtn.onclick = function () {
-            this.classList.remove('active-btn')
-            playBtn.classList.add('active-btn')
-            audio.pause()
-            app.pauseCdRotate()
-        }
-    },
-
     handleRepeatBtn() {
         randomBtn.onclick = function() {
-            this.classList.remove('active-btn')
+            randomBtn.classList.remove('active-btn')
             repeat1Btn.classList.add('active-btn')
-            app.repeatStatus = 'repeatOne'
+            app.setConfig('repeatStt', 'repeatOne')
         }
         repeat1Btn.onclick = function() {
-            this.classList.remove('active-btn')
+            repeat1Btn.classList.remove('active-btn')
+            // randomBtn.classList.remove('active-btn')
             repeatListBtn.classList.add('active-btn')
-            app.repeatStatus = 'repeatList'
+            app.setConfig('repeatStt', 'repeatList')
         }
         repeatListBtn.onclick = function() {
-            this.classList.remove('active-btn')
+            repeatListBtn.classList.remove('active-btn')
             randomBtn.classList.add('active-btn')
-            app.repeatStatus = 'random'
+            app.setConfig('repeatStt', 'random')
         }
     },
 
@@ -266,6 +298,7 @@ const app = {
         audio.ontimeupdate = function() {
             let timePercent = audio.currentTime / audio.duration * 1000
             progress.value = timePercent
+            app.setConfig('timeUpdate', audio.currentTime)
         }
         progress.oninput = function () {
             audio.currentTime = audio.duration / 1000 * progress.value
@@ -283,6 +316,7 @@ const app = {
     },
 
     handleEvents() {
+       
         this.pauseCdRotate()
 
         this.handleShowCurrentSong()
@@ -302,16 +336,13 @@ const app = {
         this.handleProgressTimeUpdate()
 
         this.handleNextSong()
-
-        // this.loadActiveSong()
     },
     
     start() {
         this.renderPlayList()
-
         this.handleEvents()
-
-        this.loadCurrentSong()
+        this.loadConfigRepeat()
+        this.loadConfigCurrentSong()
     },
 }
 
