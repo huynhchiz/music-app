@@ -232,6 +232,7 @@ const app = {
 
     handleBackward() {
         backwardBtn.onclick = function() {
+            app.repeatStatus = app.config['repeatStt']
             if (app.repeatStatus === 'random') {
                 app.handlePlayRandomSong()
             } else {
@@ -249,6 +250,7 @@ const app = {
 
     handleForward() {
         forwardBtn.onclick = function() {
+            app.repeatStatus = app.config['repeatStt']
             if (app.repeatStatus === 'random') {
                 app.handlePlayRandomSong()
             } else {
