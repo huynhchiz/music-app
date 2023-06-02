@@ -272,7 +272,6 @@ const app = {
         }
         repeat1Btn.onclick = function() {
             repeat1Btn.classList.remove('active-btn')
-            // randomBtn.classList.remove('active-btn')
             repeatListBtn.classList.add('active-btn')
             app.setConfig('repeatStt', 'repeatList')
         }
@@ -298,6 +297,7 @@ const app = {
         audio.ontimeupdate = function() {
             let timePercent = audio.currentTime / audio.duration * 1000
             progress.value = timePercent
+            progress.style.background = `linear-gradient(90deg, #ecd71f ${(timePercent / 10) + 1}%, #d3d3d3 0%)`
             app.setConfig('timeUpdate', audio.currentTime)
         }
         progress.oninput = function () {
@@ -307,6 +307,7 @@ const app = {
 
     handleNextSong() {
         audio.onended = function() {
+            app.repeatStatus = app.config['repeatStt']
             if (app.repeatStatus === 'repeatOne') {
                 replayBtn.click()
             } else {
