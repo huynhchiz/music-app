@@ -17,7 +17,7 @@
 .show-playing h4 {
     margin-top: 16px;
     display: inline-block;
-    color: #ecd71f;
+    color: #9b4de0;
 }
 
 .show-playing h3 {
@@ -69,6 +69,7 @@
 }
 
 #play-icon {
+    color: #9b4de0;
     padding: 1px 3px 5px 3px;
 }
 
@@ -81,7 +82,7 @@
 }
 
 #repeatOne-icon {
-    color:#ecd71f;
+    color:#9b4de0;
 }
 
 #repeatList-icon {
@@ -103,8 +104,8 @@
 .progress::-webkit-slider-thumb {
     appearance: none;
     width: 5px;
-    height: 5px;
-    background-color: #ecd71f;
+    height: 6px;
+    background-color: #9b4de0;
     cursor: pointer;
 }
 
@@ -124,14 +125,14 @@
     width: 412px;
     background-color: black;
     background-size: 100%;
-    /* margin-top: 435px; */
 }
 
 .song {
-    color: rgb(241, 237, 237);
+    color: white;
     margin-bottom: 6px;
     background-color: #290b29;
     border-radius: 12px;
+    /* box-shadow: 1px; */
     margin-left: 5%;
     width: 90%;
     height: 65px;
@@ -143,10 +144,9 @@
     opacity: 0.8;
 }
 
-
 .song-active {
-    background-color: #ecd71f;
-    color: rgb(31, 29, 29);
+    background-color: #9b4de0;
+    color: white;
 }
 
 #list-img {
